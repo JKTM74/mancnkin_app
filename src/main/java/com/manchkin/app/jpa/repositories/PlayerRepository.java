@@ -11,6 +11,7 @@ import java.util.UUID;
 public interface PlayerRepository extends JpaRepository<Player, UUID> {
     /*
     Так нельзя (void не должно быть, нужно в идеале возвращать Player) и это просто пример составления нативного запроса к БД без использования автогенератора
+    P.S. никогда не сэйви нативным запросом в JPA, есть save и saveAll, спасибо
     @Query(value = "INSERT INTO Player (login, pass) VALUES (:login, :pass)", nativeQuery = true)
     void createNewUser(@Param("login") String login, @Param("pass") String pass);*/
 

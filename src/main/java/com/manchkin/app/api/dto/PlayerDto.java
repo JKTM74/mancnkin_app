@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,12 +12,9 @@ import javax.validation.constraints.Null;
 @Getter
 @Setter
 public class PlayerDto {
-    @Null
-    private Long id;
-
-    @NotNull
+    @NotNull @Size(min = 5, max = 64)
     private String login;
 
-    @NotNull
+    @NotNull @Size(min = 5, max = 32)
     private String pass;
 }

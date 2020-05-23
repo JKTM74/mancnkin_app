@@ -7,3 +7,7 @@ create table users (
     login varchar(64) not null unique,
     password varchar(32) not null
 );
+--changeset v.eremin:1
+alter table users rename to player;
+--changeset v.eremin:2
+alter table player rename column password to pass;

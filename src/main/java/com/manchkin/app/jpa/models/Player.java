@@ -1,16 +1,9 @@
 package com.manchkin.app.jpa.models;
 
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.*;
-import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-
-@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Entity
 @Builder
 @Getter

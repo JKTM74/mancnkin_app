@@ -1,5 +1,6 @@
 package com.manchkin.app.api.controller;
 
+import com.manchkin.app.api.dto.BooleanResponseDto;
 import com.manchkin.app.api.dto.PlayerDto;
 import com.manchkin.app.jpa.models.Player;
 import com.manchkin.app.jpa.repositories.PlayerRepository;
@@ -12,30 +13,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class Controller {
+public class PlayerController {
 
     private final ModelMapper modelMapper = new ModelMapper();
     private final PlayerRepository playerRepository;
-    private List<Player> players = new ArrayList<>();
 
-
-    public Controller(PlayerRepository playerRepository) {
+    public PlayerController(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
 
-    @GetMapping
-    public List<Player> get() {
-        return players;
-    }
-
+    /**
+     * Метод на регистрацию игрока
+     * @param playerDto дто на создание игрока
+     * @return в случае успешной регистрации - тру, иначе фолс
+     */
     @PostMapping("/registration")
-    @ResponseStatus(HttpStatus.CREATED)
-
-    public void registration(@Valid @RequestBody PlayerDto playerDto) { //TODO: запилить шифрование паролей
+    public BooleanResponseDto registration(@Valid @RequestBody PlayerDto playerDto) { //TODO: запилить шифрование паролей
         if (!playerRepository.existsByLogin(playerDto.getLogin())) {
             Player player = convertDtoToEntity(playerDto);
             playerRepository.save(player);
-            players.add(player);
+            return new BooleanResponseDto(true);
+        } else {
+            return new BooleanResponseDto(false);
         }
     }
 
