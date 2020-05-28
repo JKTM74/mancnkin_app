@@ -31,12 +31,22 @@ public class PlayerController {
     public BooleanResponseDto registration(@Valid @RequestBody PlayerDto playerDto) { //TODO: запилить шифрование паролей
         if (!playerRepository.existsByLogin(playerDto.getLogin())) {
             Player player = convertDtoToEntity(playerDto);
-            playerRepository.save(player);
+            Player player1 = playerRepository.save(player);
             return new BooleanResponseDto(true);
         } else {
             return new BooleanResponseDto(false);
         }
     }
+
+    @PostMapping("/authorization")
+    public BooleanResponseDto authorization(@Valid @RequestBody PlayerDto playerDto) {
+            if (playerRepository.checkPassAndLogin(playerDto.getPass(), playerDto.getLogin()) != null) {
+                return new BooleanResponseDto(true);
+            } else {
+                return new BooleanResponseDto(false);
+            }
+        }
+
 
     private Player convertDtoToEntity(PlayerDto playerDto) {
         return modelMapper.map(playerDto, Player.class);
