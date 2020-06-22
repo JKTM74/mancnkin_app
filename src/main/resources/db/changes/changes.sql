@@ -11,3 +11,10 @@ create table users (
 alter table users rename to player;
 --changeset v.eremin:2
 alter table player rename column password to pass;
+--changeset s.vagin:1
+create table room (
+    id serial primary key,
+    name varchar(64) not null unique,
+    isActive boolean not null,
+    info JSONb not null
+);
