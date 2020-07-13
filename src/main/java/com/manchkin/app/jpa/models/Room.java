@@ -1,6 +1,9 @@
 package com.manchkin.app.jpa.models;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.*;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 
@@ -10,6 +13,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class Room {
 
     @Id
@@ -18,6 +22,10 @@ public class Room {
 
     private String name;
     private boolean isActive;
+
+    @Type(type = "jsonb")
+    private Object info;
+
 }
 
 

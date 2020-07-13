@@ -6,8 +6,8 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/manchkin
     driver-class-name: org.postgresql.Driver
-    username: manchkin
-    password: manchkin
+    username: postgres
+    password: root
   liquibase:
     change-log: classpath:/db/changelog-master.xml
     enabled: true
