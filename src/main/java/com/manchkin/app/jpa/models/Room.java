@@ -21,6 +21,7 @@ public class Room {
     private Long id;
 
     private String name;
+    @Column(name = "isActive")
     private boolean isActive;
 
     @Type(type = "jsonb")

@@ -1,12 +1,11 @@
 package com.manchkin.app.api.controller;
 
 
-import com.manchkin.app.jpa.models.Player;
 import com.manchkin.app.jpa.models.Room;
 import com.manchkin.app.jpa.repositories.RoomRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,6 +24,15 @@ public class RoomController {
     @GetMapping("/room")
     public List<Room> rooms() {
         return roomRepository.findAll();
+    }
+
+    @PostMapping("/room")
+    public void testSaveRoom() {
+        roomRepository.save(Room.builder()
+                .name("huy")
+                .isActive(true)
+                .info("huy")
+                .build());
     }
 }
 
